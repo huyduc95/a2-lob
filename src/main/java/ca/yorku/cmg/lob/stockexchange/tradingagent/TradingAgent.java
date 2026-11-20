@@ -12,7 +12,7 @@ public abstract class TradingAgent {
 	protected Trader t;
 	protected StockExchange exc;
 	protected NewsBoard news;
-	
+	protected ITradingStrategy strategy; // 1. Composition: Agent HAS-A strategy
 	/**
 	 * Constructor
 	 * @param t The {@linkplain Trader} object associated with the agent.
@@ -56,7 +56,9 @@ public abstract class TradingAgent {
 		}
 
 	}
-	
+	public void setStrategy(ITradingStrategy strategy) {
+		this.strategy = strategy;
+	}
 	
 	/**
 	 * Act in response to a news {@linkplain Event}. Exact reaction strategy to be implemented by specialized agents.
@@ -64,7 +66,11 @@ public abstract class TradingAgent {
 	 * @param pos The position (number of units) of the trader to the ticker that is mentioned in the Event.
 	 * @param price The current price of the relevant ticker. 
 	 */
-	protected abstract void actOnEvent(Event e, int pos, int price);
+	protected void actOnEvent(Event e, int pos, int price){
+		if(this.strategy != null) {
+			this.strategy.actOnEvent(e, pos, price);
+		}
+	}
 	
 	
 	
