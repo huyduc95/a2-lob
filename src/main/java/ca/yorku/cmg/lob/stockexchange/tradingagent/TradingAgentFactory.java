@@ -30,7 +30,8 @@ public class TradingAgentFactory extends AbstractTradingAgentFactory {
         } else {
             throw new IllegalArgumentException("Unknown strategy style: " + style);
         }
-
+        
+        agent.setStrategy(strategy);
         return agent;
     }
     

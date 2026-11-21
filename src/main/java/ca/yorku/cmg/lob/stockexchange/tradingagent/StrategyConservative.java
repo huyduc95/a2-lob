@@ -9,6 +9,7 @@ import ca.yorku.cmg.lob.tradestandards.IOrder;
 import ca.yorku.cmg.lob.orderbook.Ask;
 
 public class StrategyConservative implements ITradingStrategy {
+    
     private Trader t;
     private StockExchange exc;
   
