@@ -184,7 +184,7 @@ public class StockExchange {
 	                    	accounts.addAccount(new AccountPro(t,initBalance));
 	                    }
 	                    // NEW replace the following with a call to the factory to create the appropriate trading agent
-							traders.add(factory.createAgent(traderType, tradingStyle, t, this, newsDesk));
+						traders.add(factory.createAgent(traderType, tradingStyle, t, this, newsDesk));
 	                    
 	                } else {
 	                    System.err.println("Skipping malformed line (two few attributes): " + line);
