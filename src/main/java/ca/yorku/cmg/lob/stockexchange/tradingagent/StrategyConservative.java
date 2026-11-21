@@ -24,10 +24,10 @@ public class StrategyConservative implements ITradingStrategy {
         IOrder newOrder = null;
 
         if (e instanceof GoodNews) {
-            newOrder = new Bid(t, e.getSecrity(), (int) Math.round(price * 1.05), (int) Math.round(pos * 0.5),
+            newOrder = new Bid(t, e.getSecrity(), (int) Math.round(price * 1.05), (int) Math.round(pos * 0.2),
                     e.getTime());
         } else if (e instanceof BadNews) {
-            newOrder = new Ask(t, e.getSecrity(), (int) Math.round(price * 0.90), (int) Math.round(pos * 0.8),
+            newOrder = new Ask(t, e.getSecrity(), (int) Math.round(price * 0.95), (int) Math.round(pos * 0.2),
                     e.getTime());
 
         } else {

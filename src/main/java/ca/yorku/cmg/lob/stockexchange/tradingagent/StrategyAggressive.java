@@ -22,9 +22,9 @@ import ca.yorku.cmg.lob.orderbook.Ask;
         IOrder newOrder = null;
 
         if(e instanceof GoodNews) {
-            newOrder = new Bid(t, e.getSecrity(), (int) Math.round(price * 1.10), (int) Math.round(pos * 0.5),e.getTime());
+            newOrder = new Bid(t, e.getSecrity(), (int) Math.round(price * 1.05), (int) Math.round(pos * 0.5),e.getTime());
         }else if (e instanceof BadNews){
-            newOrder = new Ask(t, e.getSecrity(), (int) Math.round(price * 0.90), (int) Math.round(pos * 0.5),e.getTime());
+            newOrder = new Ask(t, e.getSecrity(), (int) Math.round(price * 0.90), (int) Math.round(pos * 0.8),e.getTime());
         }else{
             System.out.println("Unknown event type: " + e.getClass().getName());
         }
