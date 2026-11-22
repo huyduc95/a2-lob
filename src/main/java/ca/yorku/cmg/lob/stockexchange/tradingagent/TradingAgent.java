@@ -4,11 +4,11 @@ import ca.yorku.cmg.lob.stockexchange.StockExchange;
 import ca.yorku.cmg.lob.stockexchange.events.Event;
 import ca.yorku.cmg.lob.stockexchange.events.NewsBoard;
 import ca.yorku.cmg.lob.trader.Trader;
-
+import ca.yorku.cmg.lob.stockexchange.events.IObserver;
 /**
  * An trading agent that receives news and reacts by submitting ask or bid orders.
  */
-public abstract class TradingAgent {
+public abstract class TradingAgent implements IObserver { // 2. Inheritance: Agent IS-A Observer
 	protected Trader t;
 	protected StockExchange exc;
 	protected NewsBoard news;
@@ -23,7 +23,12 @@ public abstract class TradingAgent {
 		this.t=t;
 		this.exc = e;
 		this.news = n;
+
+		if(this.news != null) {
+			this.news.attach(this); // 3. Polymorphism: Agent IS-A Observer, so it can be attached to the NewsBoard
+		}
 	}
+	
 	
 	/**
 	 * Method to be called as time advances to {@code time}. In response the TradingAgent will poll the NewsBoard for events.
@@ -71,8 +76,10 @@ public abstract class TradingAgent {
 			this.strategy.actOnEvent(e, pos, price);
 		}
 	}
-	
-	
+	@Override 
+	public void update(Event e) {
+		examineEvent(e);
+	}
 	
 
 }
